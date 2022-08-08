@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Enumerations
 {
-    public enum GenderEnum
+    public enum Gender
     {
         Man,
         Woman,
