@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Enumerations
 {
-    public enum ProjectStatusEnum
+    public enum Role
     {
-        PendingPlayers,
-        Ongoing,
-        Finished
+        User,
+        Admin
     }
 }
