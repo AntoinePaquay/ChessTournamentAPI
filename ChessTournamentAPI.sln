@@ -13,7 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.DAL", "Ches
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.EF", "ToolBox.EF\ToolBox.EF.csproj", "{F76E5D69-BC92-46A5-9886-F6045C8C85BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.API", "ChessTournament.API\ChessTournament.API.csproj", "{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}"
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.API", "ChessTournament.API\ChessTournament.API.csproj", "{FB0FBC36-DA63-4D3F-9265-368F5FFC9786}"
+
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +44,12 @@ Global
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Release|Any CPU.Build.0 = Release|Any CPU
+
+		{FB0FBC36-DA63-4D3F-9265-368F5FFC9786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB0FBC36-DA63-4D3F-9265-368F5FFC9786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB0FBC36-DA63-4D3F-9265-368F5FFC9786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB0FBC36-DA63-4D3F-9265-368F5FFC9786}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
