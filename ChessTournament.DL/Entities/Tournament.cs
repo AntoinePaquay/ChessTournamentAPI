@@ -20,9 +20,9 @@ namespace ChessTournament.DL.Entities
         public TournamentStatus TournamentStatus { get; set; }
         public int CurrentRound { get; set; }
         public bool IsWomen { get; set; }
-        public DateTime TournamentCreationDate { get; set; }
-        public DateTime TournamentEndDate { get; set; }
-        public DateTime TournamentModifyDate { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime RegisterationDeadLine { get; set; }
+        public DateTime Modified { get; set; }
 
 
     }
