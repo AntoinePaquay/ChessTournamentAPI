@@ -20,6 +20,25 @@ namespace ChessTournament.DAL.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //TODO Constraint
+            /*
+            builder.Entity<Member>().Property(m => m.Email).HasMaxLength(255);
+
+            builder.Entity<Member>()
+                .HasIndex(m => m.Email).IsUnique();
+            builder.Entity<Member>().HasCheckConstraint("CK_EMAIL", "email LIKE '_%@_%._%'");
+             */
+            
+            builder.Entity<Country>().Property
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

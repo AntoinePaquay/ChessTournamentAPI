@@ -14,9 +14,10 @@ namespace ChessTournament.DL.Entities
         public string Email { get; set; } = String.Empty;
         public string PasswordHash { get; set; } = String.Empty;
         public DateTime Birthday { get; set; }
-        public double ELO { get; set; }
+        public double Elo { get; set; }
         public Role Role { get; set; }
         public Gender Gender { get; set; }
+        public Guid Salt { get; set; }
         public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
     }
 }
