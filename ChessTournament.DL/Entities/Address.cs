@@ -8,11 +8,11 @@ namespace ChessTournament.DL.Entities
 {
     public class Address
     {
-        public Country Country;
-        public string PostalCode;
-        public string Street;
-        public string HouseNumber;
-        public string City;
-        public string Province;
+        public Country Country { get; set; }
+        public string PostalCode { get; set; }
+        public string Street { get; set; }
+        public string HouseNumber { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
     }
 }
