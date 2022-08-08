@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Enumerations
 {
-    internal class GenderEnum
+    public enum Categorie
     {
+        Junior = 1,
+        Senior = 2,
+        Veteran = 4
     }
 }
