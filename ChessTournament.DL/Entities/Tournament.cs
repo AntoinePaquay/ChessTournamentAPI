@@ -10,18 +10,18 @@ namespace ChessTournament.DL.Entities
     public class Tournament
     {
         public Guid Id { get; set; }
-        public int minPlayer { get; set; }
-        public int maxPlayer { get; set; }
+        public int MinPlayer { get; set; }
+        public int MaxPlayer { get; set; }
 
-        public int? eloMin { get; set; }
-        public int? eloMax { get; set; }
+        public int? EloMin { get; set; }
+        public int? EloMax { get; set; }
         public Categorie TournamentCategorie { get; set; }
-        public ProjectStatus tournamentStatus { get; set; }
-        public int currentRound { get; set; }
-        public bool isWomen { get; set; }
-        public DateTime tournamentCreationDate { get; set; }
-        public DateTime tournamentEndDate { get; set; }
-        public DateTime tournamentModifyDate { get; set; }
+        public TournamentStatus TournamentStatus { get; set; }
+        public int CurrentRound { get; set; }
+        public bool IsWomen { get; set; }
+        public DateTime TournamentCreationDate { get; set; }
+        public DateTime TournamentEndDate { get; set; }
+        public DateTime TournamentModifyDate { get; set; }
 
 
     }
