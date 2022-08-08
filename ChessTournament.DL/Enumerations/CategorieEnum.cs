@@ -10,6 +10,6 @@ namespace ChessTournament.DL.Enumerations
     {
         Junior = 1,
         Senior = 2,
-        Veteran = 4,
+        Veteran = 4
     }
 }

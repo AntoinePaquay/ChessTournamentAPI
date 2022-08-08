@@ -10,6 +10,6 @@ namespace ChessTournament.DL.Enumerations
     {
         Man,
         Woman,
-        Other,
+        Other
     }
 }
