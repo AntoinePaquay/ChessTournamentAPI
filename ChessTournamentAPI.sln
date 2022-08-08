@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.API", "ChessTournamentAPI\ChessTournament.API.csproj", "{A32491EF-3ABC-410A-9F45-BF87D3C039E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.BLL", "ChessTournament.BLL\ChessTournament.BLL.csproj", "{FC553779-9360-432D-B270-708164B68197}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessTournament.BLL", "ChessTournament.BLL\ChessTournament.BLL.csproj", "{FC553779-9360-432D-B270-708164B68197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.DL", "ChessTournament.DL\ChessTournament.DL.csproj", "{2D654CC3-F4D8-40E5-B6B1-5336EB65E925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessTournament.DL", "ChessTournament.DL\ChessTournament.DL.csproj", "{2D654CC3-F4D8-40E5-B6B1-5336EB65E925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.IL", "ChessTournament.IL\ChessTournament.IL.csproj", "{9552B95C-4FA9-41B5-B15A-5C25A708CA87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessTournament.IL", "ChessTournament.IL\ChessTournament.IL.csproj", "{9552B95C-4FA9-41B5-B15A-5C25A708CA87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.DAL", "ChessTournament.DAL\ChessTournament.DAL.csproj", "{B0044104-18D3-4BE6-9A26-C11639B8FB95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessTournament.DAL", "ChessTournament.DAL\ChessTournament.DAL.csproj", "{B0044104-18D3-4BE6-9A26-C11639B8FB95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.EF", "ToolBox.EF\ToolBox.EF.csproj", "{F76E5D69-BC92-46A5-9886-F6045C8C85BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.EF", "ToolBox.EF\ToolBox.EF.csproj", "{F76E5D69-BC92-46A5-9886-F6045C8C85BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTournament.API", "ChessTournament.API\ChessTournament.API.csproj", "{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A32491EF-3ABC-410A-9F45-BF87D3C039E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A32491EF-3ABC-410A-9F45-BF87D3C039E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A32491EF-3ABC-410A-9F45-BF87D3C039E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A32491EF-3ABC-410A-9F45-BF87D3C039E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC553779-9360-432D-B270-708164B68197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC553779-9360-432D-B270-708164B68197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC553779-9360-432D-B270-708164B68197}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F76E5D69-BC92-46A5-9886-F6045C8C85BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2C4D0B-460D-4B4C-8574-EDF691A551EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
