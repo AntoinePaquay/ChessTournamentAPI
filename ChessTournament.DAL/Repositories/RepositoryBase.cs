@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ChessTournament.DAL.Repositories
 {
     public class RepositoryBase<TKey, TEntity> : IRepository<TKey, TEntity>
-        where TEntity : IEntity<TKey>
+        where TEntity : class, IEntity<TKey>
     {
         protected ChessTournamentContext _context;
 
@@ -18,29 +18,32 @@ namespace ChessTournament.DAL.Repositories
             _context = context;
         }
 
-        public TKey Create(TEntity entity)
+        public virtual bool Create(TEntity entity)
+        {
+            _context.Add(entity);
+            return _context.SaveChanges() == 1;
+        }
+
+        public virtual bool Update(TEntity entity)
+        {
+            _context.Update(entity);
+            return _context.SaveChanges() == 1;
+        }
+
+        public virtual IEnumerable<TEntity> GetAll()
+        {
+            return _context.Set<TEntity>();
+        }
+
+        public virtual TEntity GetById(TKey id)
         {
             throw new NotImplementedException();
         }
-
-        public bool Delete(TKey id)
+        public virtual bool Delete(TKey id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public TEntity GetById(TKey id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(TEntity entity)
-        {
-            throw new NotImplementedException();
+            var entity = GetById(id);
+            _context.Remove(entity);
+            return _context.SaveChanges() == 1;
         }
     }
 }
