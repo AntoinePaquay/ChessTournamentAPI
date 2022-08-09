@@ -32,6 +32,9 @@ namespace ChessTournament.DAL.Context
                 .HasOne(m => m.Tournament)
                 .WithMany(p => p.Matchups)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Member>().HasIndex(m => m.Email).IsUnique();
+            builder.Entity<Member>().HasIndex(m => m.Pseudo).IsUnique();
         }
     }
 }
