@@ -10,7 +10,7 @@ namespace ChessTournament.DAL.Interfaces
         where TEntity : IEntity<TKey>
     {
         // Create
-        TKey Create(TEntity entity);
+        bool Create(TEntity entity);
 
         // Read
         IEnumerable<TEntity> GetAll();
