@@ -1,5 +1,6 @@
 ﻿using ChessTournament.DAL.Context;
 using ChessTournament.DAL.Interfaces;
+using ChessTournament.DL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,14 @@ namespace ChessTournament.DAL.Repositories
             return _context.Set<TEntity>();
         }
 
-        public virtual TEntity GetById(TKey id)
+        public virtual TEntity? GetById(TKey id)
         {
-            return _context.Set<TEntity>().SingleOrDefault(e => EqualityComparer<TKey>.Default.Equals(e.Id,id))!;
+            return _context.Set<TEntity>().Find(id);
         }
         public virtual bool Delete(TKey id)
         {
-            TEntity entity = GetById(id);
+            TEntity ?entity = GetById(id);
+            if (entity is null) return false;
             _context.Remove(entity);
             return _context.SaveChanges() == 1;
         }

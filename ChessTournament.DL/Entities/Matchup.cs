@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Entities
 {
-    public class Matchup
+    public class Matchup : IEntity<Guid>
     {
         public Guid Id { get; set; }
         public Member White { get; set; } = null!;

@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Entities
 {
-    public class Tournament
+    public class Tournament: IEntity<Guid>
     {
         public Guid Id { get; set; }
+        public string Name { get; set; }
         public int MinPlayer { get; set; }
         public int MaxPlayer { get; set; }
         public Address Address { get; set; } = null!;
         public int? EloMin { get; set; }
         public int? EloMax { get; set; }
         public virtual ICollection<Member> Members { get; set; } = new List<Member>();
-        public Categorie TournamentCategorie { get; set; }
-        public TournamentStatus TournamentStatus { get; set; }
+        public Categorie Categorie { get; set; }
+        public TournamentStatus Status { get; set; }
         public int CurrentRound { get; set; }
         public bool IsWomen { get; set; }
         public DateTime Created { get; set; }
         public DateTime RegisterationDeadLine { get; set; }
         public DateTime Modified { get; set; }
         public virtual ICollection<Matchup> Matchups { get; set; } = new List<Matchup>();
-
 
     }
 }

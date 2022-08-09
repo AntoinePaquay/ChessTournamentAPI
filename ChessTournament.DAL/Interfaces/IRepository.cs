@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessTournament.DL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace ChessTournament.DAL.Interfaces
 
         // Read
         IEnumerable<TEntity> GetAll();
-        TEntity GetById(TKey id);
+        TEntity? GetById(TKey id);
 
         // Update
 
