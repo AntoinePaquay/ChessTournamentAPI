@@ -6,7 +6,6 @@ namespace ChessTournament.DAL.Context
     public class ChessTournamentContext : DbContext
     {
         public DbSet<Tournament> Tournaments { get; set; } = null!;
-        public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<Matchup> Matchups { get; set; } = null!;
         public DbSet<Member> Members { get; set; } = null!;
         public DbSet<Address> Addresses { get; set; } = null!;
@@ -19,14 +18,20 @@ namespace ChessTournament.DAL.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //TODO Constraint
-            /*
-            builder.Entity<Member>().Property(m => m.Email).HasMaxLength(255);
+            builder.Entity<Matchup>()
+                .HasOne(m => m.White)
+                .WithMany(p => p.MatchupsAsWhite)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Member>()
-                .HasIndex(m => m.Email).IsUnique();
-            builder.Entity<Member>().HasCheckConstraint("CK_EMAIL", "email LIKE '_%@_%._%'");
-             */
+            builder.Entity<Matchup>()
+                .HasOne(m => m.Black)
+                .WithMany(p => p.MatchupsAsBlack)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Matchup>()
+                .HasOne(m => m.Tournament)
+                .WithMany(p => p.Matchups)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
