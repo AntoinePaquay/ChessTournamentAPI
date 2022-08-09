@@ -23,6 +23,7 @@ namespace ChessTournament.DL.Entities
         public DateTime Created { get; set; }
         public DateTime RegisterationDeadLine { get; set; }
         public DateTime Modified { get; set; }
+        public virtual ICollection<Matchup> Matchups { get; set; } = new List<Matchup>();
 
 
     }

@@ -19,5 +19,6 @@ namespace ChessTournament.DL.Entities
         public Gender Gender { get; set; }
         public Guid Salt { get; set; }
         public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
+        public virtual ICollection<Matchup> Matchups { get; set; } = new List<Matchup>();
     }
 }
