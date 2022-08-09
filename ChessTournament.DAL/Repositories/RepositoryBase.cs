@@ -41,7 +41,7 @@ namespace ChessTournament.DAL.Repositories
         }
         public virtual bool Delete(TKey id)
         {
-            var entity = GetById(id);
+            TEntity entity = GetById(id);
             _context.Remove(entity);
             return _context.SaveChanges() == 1;
         }
