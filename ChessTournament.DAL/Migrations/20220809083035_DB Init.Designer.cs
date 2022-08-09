@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChessTournament.DAL.Migrations
 {
     [DbContext(typeof(ChessTournamentContext))]
-    [Migration("20220808191323_Database init")]
-    partial class Databaseinit
+    [Migration("20220809083035_DB Init")]
+    partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,8 +34,9 @@ namespace ChessTournament.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HouseNumber")
                         .IsRequired()
@@ -55,24 +56,7 @@ namespace ChessTournament.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
-
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("ChessTournament.DL.Entities.Country", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("ChessTournament.DL.Entities.Matchup", b =>
@@ -209,35 +193,24 @@ namespace ChessTournament.DAL.Migrations
                     b.ToTable("MemberTournament");
                 });
 
-            modelBuilder.Entity("ChessTournament.DL.Entities.Address", b =>
-                {
-                    b.HasOne("ChessTournament.DL.Entities.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
             modelBuilder.Entity("ChessTournament.DL.Entities.Matchup", b =>
                 {
                     b.HasOne("ChessTournament.DL.Entities.Member", "Black")
-                        .WithMany()
+                        .WithMany("MatchupsAsBlack")
                         .HasForeignKey("BlackId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ChessTournament.DL.Entities.Tournament", "Tournament")
-                        .WithMany()
+                        .WithMany("Matchups")
                         .HasForeignKey("TournamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ChessTournament.DL.Entities.Member", "White")
-                        .WithMany()
+                        .WithMany("MatchupsAsWhite")
                         .HasForeignKey("WhiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Black");
@@ -271,6 +244,18 @@ namespace ChessTournament.DAL.Migrations
                         .HasForeignKey("TournamentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ChessTournament.DL.Entities.Member", b =>
+                {
+                    b.Navigation("MatchupsAsBlack");
+
+                    b.Navigation("MatchupsAsWhite");
+                });
+
+            modelBuilder.Entity("ChessTournament.DL.Entities.Tournament", b =>
+                {
+                    b.Navigation("Matchups");
                 });
 #pragma warning restore 612, 618
         }
