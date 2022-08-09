@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Entities
 {
-    public class Tournament
+    public class Tournament: IEntity<Guid>
     {
         public Guid Id { get; set; }
+        public string TournamentName { get; set; }
         public int MinPlayer { get; set; }
         public int MaxPlayer { get; set; }
         public Address Address { get; set; } = null!;
@@ -24,7 +25,6 @@ namespace ChessTournament.DL.Entities
         public DateTime RegisterationDeadLine { get; set; }
         public DateTime Modified { get; set; }
         public virtual ICollection<Matchup> Matchups { get; set; } = new List<Matchup>();
-
 
     }
 }
