@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChessTournament.DAL\ChessTournament.DAL.csproj" />
+    <ProjectReference Include="..\ChessTournament.DL\ChessTournament.DL.csproj" />
+  </ItemGroup>
+
 </Project>
