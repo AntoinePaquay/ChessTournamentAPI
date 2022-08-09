@@ -37,7 +37,7 @@ namespace ChessTournament.DAL.Repositories
 
         public virtual TEntity GetById(TKey id)
         {
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().SingleOrDefault(e => EqualityComparer<TKey>.Default.Equals(e.Id,id))!;
         }
         public virtual bool Delete(TKey id)
         {
