@@ -1,4 +1,5 @@
-﻿using ChessTournament.DL.Entities;
+﻿using ChessTournament.BLL.Tools.CustomValidationAttribute;
+using ChessTournament.DL.Entities;
 using ChessTournament.DL.Enumerations;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,25 @@ namespace ChessTournament.BLL.DTO.Tournaments
     {
         [Required]
         public string Name { get; set; }
-        [Range(2,32)]
+        [Required]
+        [Range(2, 32)]
         public int MinPlayer { get; set; }
-        [Range(2,32)]
+        [Required]
+        [Range(2, 32)]
+        [GreaterOrEqualThanAttribute(nameof(MinPlayer))]
         public int MaxPlayer { get; set; }
         public Address? Address { get; set; }
-        [Range(0,3000)]
+        [Range(0, 3000)]
         public int? EloMin { get; set; }
         [Range(0, 3000)]
+        [GreaterOrEqualThanAttribute(nameof(EloMin))]
         public int? EloMax { get; set; }
         [Required]
-        public Categorie categorie { get; set; }
+        public Categorie Categorie { get; set; }
         [Required]
         public bool IsWomenOnly { get; set; }
+        public DateTime RegisterationDeadLine { get; set; }
 
 
-}
+    }
 }

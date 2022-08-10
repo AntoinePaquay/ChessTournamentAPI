@@ -17,11 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChessTournament.BLL\ChessTournament.BLL.csproj" />
     <ProjectReference Include="..\ChessTournament.DAL\ChessTournament.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
