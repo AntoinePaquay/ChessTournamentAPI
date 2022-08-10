@@ -11,6 +11,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ChessTournamentContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 
+builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenInfo").GetSection("secret").Value)),
+        ValidateIssuer = false,
+        ValidIssuer = builder.Configuration.GetSection("TokenInfo").GetSection("issuer").Value,
+        ValidateAudience = false,
+        ValidAudience = builder.Configuration.GetSection("TokenInfo").GetSection("audience").Value
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
