@@ -3,6 +3,7 @@ using ChessTournament.BLL.Interfaces;
 using ChessTournament.BLL.Mappers;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
+using ChessTournament.DL.Enumerations;
 using ChessTournament.IL;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,11 @@ namespace ChessTournament.BLL.Services
 
             Member m = dto.ToEntity();
             m.Salt = Guid.NewGuid();
-            m.PasswordHash = HashingUtility.PasswordHash(dto.Password);
-            return true;
+            m.PasswordHash = HashingUtility.Hash(dto.Password, m.Salt);
+            m.Elo = dto.Elo ?? 1200;
+            m.Role = Role.User;
+            
+            return _Repository.Create(m);
         }
     }
 }

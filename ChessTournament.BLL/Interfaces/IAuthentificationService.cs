@@ -1,4 +1,5 @@
-﻿using ChessTournament.DAL.Interfaces;
+﻿using ChessTournament.BLL.DTO.Members;
+using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.BLL.Interfaces
 {
-    public interface IAuthentificationService 
+    public interface IAuthentificationService
     {
+        public bool Register(MemberRegisterDTO dto)
     }
 }

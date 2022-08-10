@@ -9,6 +9,5 @@ namespace ChessTournament.DAL.Interfaces
 {
     public interface IMemberRepository : IRepository<Guid, Member>
     {
-
     }
 }
