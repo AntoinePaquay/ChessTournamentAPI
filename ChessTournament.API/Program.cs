@@ -1,3 +1,5 @@
+using ChessTournament.BLL.Interfaces;
+using ChessTournament.BLL.Services;
 using ChessTournament.DAL.Context;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DAL.Repositories;
@@ -29,6 +31,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidAudience = builder.Configuration.GetSection("TokenInfo").GetSection("audience").Value
     };
 });
+
+builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<ITournamentRepository, RepositoryTournament>();
+
 
 var app = builder.Build();
 
