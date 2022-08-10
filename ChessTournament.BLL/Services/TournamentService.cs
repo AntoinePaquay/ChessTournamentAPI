@@ -1,6 +1,9 @@
-﻿using ChessTournament.BLL.Interfaces;
+﻿using ChessTournament.BLL.DTO.Tournaments;
+using ChessTournament.BLL.Interfaces;
+using ChessTournament.BLL.Tools.Mappers;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
+using ChessTournament.DL.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +21,24 @@ namespace ChessTournament.BLL.Services
             _repository = repository;
         }
 
-        public bool Create(Tournament entity)
+        public bool Create(TournamentAddDTO tournamentAddDTO)
         {
-            throw new NotImplementedException();
+            Tournament tournament = tournamentAddDTO.FromBLLToDL();
+            tournament.Status = TournamentStatus.PendingPlayers;
+            tournament.CurrentRound = 0;
+            tournament.Created = DateTime.Now;
+            tournament.Update = DateTime.Now;
+            DateTime DeadLine = tournament.Created.AddDays(tournament.MinPlayer);
+            if (tournament.RegisterationDeadLine < tournament.Created.AddDays(tournament.MinPlayer))
+            {
+                throw new Exception($"La date de fin des inscriptions doit être supérieur au {tournament.Created.AddDays(tournament.MinPlayer)}");
+            }
+            return _repository.Create(tournamentAddDTO.FromBLLToDL());
         }
 
         public bool Delete(Guid id)
         {
             return _repository.Delete(id);
-        }
-
-        public IEnumerable<Tournament> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Tournament? GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(Tournament entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

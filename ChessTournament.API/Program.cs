@@ -1,3 +1,5 @@
+using ChessTournament.BLL.Interfaces;
+using ChessTournament.BLL.Services;
 using ChessTournament.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ChessTournamentContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("default")));
+
+builder.Services.AddScoped<ITournamentService, TournamentService>();
 
 var app = builder.Build();
 
