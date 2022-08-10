@@ -17,13 +17,13 @@ namespace ChessTournament.DL.Entities
         public int? EloMin { get; set; }
         public int? EloMax { get; set; }
         public virtual ICollection<Member> Members { get; set; } = new List<Member>();
-        public Categorie Categorie { get; set; }
+        public Category Category { get; set; }
         public TournamentStatus Status { get; set; }
         public int CurrentRound { get; set; }
         public bool IsWomenOnly { get; set; }
         public DateTime Created { get; set; }
         public DateTime RegisterationDeadLine { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime Update { get; set; }
         public virtual ICollection<Matchup> Matchups { get; set; } = new List<Matchup>();
 
     }

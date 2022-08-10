@@ -23,6 +23,6 @@ namespace ChessTournament.DAL.Interfaces
 
         // Delete
         bool Delete(TKey id);
-
+        bool Exists(Func<TEntity, bool> predicate);
     }
 }

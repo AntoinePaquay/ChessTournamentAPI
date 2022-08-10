@@ -1,5 +1,11 @@
+using ChessTournament.BLL.Interfaces;
+using ChessTournament.BLL.Services;
 using ChessTournament.DAL.Context;
+using ChessTournament.DAL.Interfaces;
+using ChessTournament.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
