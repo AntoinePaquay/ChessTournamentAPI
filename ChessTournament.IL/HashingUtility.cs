@@ -10,24 +10,20 @@ namespace ChessTournament.IL
 {
     public class HashingUtility
     {
+        private readonly static byte[] _Secret = Encoding.UTF8.GetBytes("M1cky pr3s1d3nt !");
         public static string Hash(string password, Guid salt)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             byte[] saltBytes = salt.ToByteArray();
-            byte[] secret = Encoding.UTF8.GetBytes("M1cky pr3s1d3nt !");
+            
 
             var config = new Argon2Config
             {
                 Type = Argon2Type.DataIndependentAddressing,
                 Version = Argon2Version.Nineteen,
-                TimeCost = 10,
-                MemoryCost = 32768,
-                Lanes = 5,
-                Threads = Environment.ProcessorCount,
                 Password = passwordBytes,
                 Salt = saltBytes,
-                Secret = secret,
-                HashLength = saltBytes.Length,
+                Secret = _Secret,
             };
 
             var argon2A = new Argon2(config);
@@ -36,5 +32,38 @@ namespace ChessTournament.IL
                 return config.EncodeString(hashA.Buffer);
             }
         }
+
+        public static bool Verify(string password, string passwordHash, Guid salt)
+        {
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            var configOfPasswordToVerify = new Argon2Config { Password = passwordBytes, Secret = _Secret
+                , Salt = salt.ToByteArray(), Type = Argon2Type.DataIndependentAddressing, Version = Argon2Version.Nineteen};
+            SecureArray<byte> hashB = null;
+
+            try
+            {
+                if (configOfPasswordToVerify.DecodeString(passwordHash, out hashB) && hashB != null)
+                {
+                    var argon2ToVerify = new Argon2(configOfPasswordToVerify);
+                    using (var hashToVerify = argon2ToVerify.Hash())
+                    {
+                        if (Argon2.FixedTimeEquals(hashB, hashToVerify))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                {
+
+                }
+            }
+            finally 
+            {
+                hashB?.Dispose();
+            }
+            return false;
+        }
+
+
     }
 }

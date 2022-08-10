@@ -11,6 +11,6 @@ namespace ChessTournament.BLL.Interfaces
 {
     public interface IAuthentificationService
     {
-        public bool Register(MemberRegisterDTO dto)
+        public bool Register(MemberRegisterDTO dto);
     }
 }
