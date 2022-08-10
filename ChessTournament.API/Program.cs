@@ -4,6 +4,8 @@ using ChessTournament.DAL.Context;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +17,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ChessTournamentContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 
+builder.Services.AddScoped<IMemberRepository, RepositoryMember>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenInfo").GetSection("secret").Value)),
+        ValidateIssuer = false,
+        ValidIssuer = builder.Configuration.GetSection("TokenInfo").GetSection("issuer").Value,
+        ValidateAudience = false,
+        ValidAudience = builder.Configuration.GetSection("TokenInfo").GetSection("audience").Value
+    };
+});
+
 builder.Services.AddScoped<ITournamentService, TournamentService>();
 builder.Services.AddScoped<ITournamentRepository, RepositoryTournament>();
+
 
 var app = builder.Build();
 

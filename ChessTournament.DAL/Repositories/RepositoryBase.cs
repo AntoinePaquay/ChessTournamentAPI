@@ -47,5 +47,11 @@ namespace ChessTournament.DAL.Repositories
             _context.Remove(entity);
             return _context.SaveChanges() == 1;
         }
+
+        public virtual bool Exists(Func<TEntity, bool> predicate)
+        {
+            if (predicate == null) return false;
+            return _context.Set<TEntity>().Any(predicate);
+        }
     }
 }
