@@ -1,4 +1,5 @@
-﻿using ChessTournament.BLL.DTO.Members;
+﻿using ChessTournament.BLL.DTO.Authentification;
+using ChessTournament.BLL.DTO.Members;
 using ChessTournament.BLL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,13 @@ namespace ChessTournament.API.Controllers
         public IActionResult Register(MemberRegisterDTO dto)
         {
             _Service.Register(dto);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Login(MemberLoginDTO dto)
+        {
+            _Service.Login(dto);
             return Ok();
         }
     }

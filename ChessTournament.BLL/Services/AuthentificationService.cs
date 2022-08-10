@@ -38,6 +38,7 @@ namespace ChessTournament.BLL.Services
             m.PasswordHash = HashingUtility.Hash(dto.Password, m.Salt);
             m.Elo = dto.Elo ?? 1200;
             m.Role = Role.User;
+            m.Id = Guid.NewGuid();
             
             return _Repository.Create(m);
         }
