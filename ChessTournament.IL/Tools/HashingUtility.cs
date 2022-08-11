@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessTournament.IL
+namespace ChessTournament.IL.Tools
 {
     public class HashingUtility
     {
@@ -15,7 +15,7 @@ namespace ChessTournament.IL
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             byte[] saltBytes = salt.ToByteArray();
-            
+
 
             var config = new Argon2Config
             {
@@ -36,8 +36,15 @@ namespace ChessTournament.IL
         public static bool Verify(string password, string passwordHash, Guid salt)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            var configOfPasswordToVerify = new Argon2Config { Password = passwordBytes, Secret = _Secret
-                , Salt = salt.ToByteArray(), Type = Argon2Type.DataIndependentAddressing, Version = Argon2Version.Nineteen};
+            var configOfPasswordToVerify = new Argon2Config
+            {
+                Password = passwordBytes,
+                Secret = _Secret
+                ,
+                Salt = salt.ToByteArray(),
+                Type = Argon2Type.DataIndependentAddressing,
+                Version = Argon2Version.Nineteen
+            };
             SecureArray<byte> hashB = null;
 
             try
@@ -53,11 +60,8 @@ namespace ChessTournament.IL
                         }
                     }
                 }
-                {
-
-                }
             }
-            finally 
+            finally
             {
                 hashB?.Dispose();
             }

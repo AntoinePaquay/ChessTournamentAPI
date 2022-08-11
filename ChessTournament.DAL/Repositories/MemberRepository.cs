@@ -13,7 +13,33 @@ namespace ChessTournament.DAL.Repositories
     {
         public MemberRepository(ChessTournamentContext context) : base(context)
         {
+        }
+        public Member GetMemberByPseudo(string pseudo)
+        {
+            Member? m;
+            try
+            {
+                m = _context.Set<Member>().FirstOrDefault(m => m.Pseudo == pseudo);
+                return m ?? throw new Exception();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
+        public Member GetMemberByEmail(string email)
+        {
+            Member? m;
+            try
+            {
+                m = _context.Set<Member>().FirstOrDefault(m => m.Email == email);
+                return m ?? throw new Exception();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
