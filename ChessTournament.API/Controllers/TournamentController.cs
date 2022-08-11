@@ -22,5 +22,11 @@ namespace ChessTournament.API.Controllers
             _service.Create(tournamentAddDTO);
             return Ok();
         }
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _service.Delete(id);
+            return Ok();
+        }
     }
 }

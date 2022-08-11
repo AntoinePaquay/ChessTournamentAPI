@@ -1,23 +1,23 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:19838",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:53197/",
+      "sslPort": 44318
     }
   },
   "profiles": {
     "ChessTournament.API": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5087",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5087",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
