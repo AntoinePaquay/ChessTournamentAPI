@@ -15,5 +15,21 @@ namespace ChessTournament.DAL.Repositories
         {
 
         }
+
+        public bool IsPlayerSignedUp(Guid tournamentId, Guid MemberId)
+        {
+            Tournament t = _context.Tournaments.FirstOrDefault(t => t.Id == tournamentId);
+            if (t is null) return false;
+
+            return t.Members.Any<Member>(m => m.Id == MemberId);
+        }
+
+        public int GetSignUpCount(Guid tournamentId)
+        {
+            Tournament t = _context.Tournaments.FirstOrDefault(t => t.Id == tournamentId);
+            if (t is null) return 0;
+
+            return t.Members.Count();
+        }
     }
 }
