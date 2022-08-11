@@ -23,4 +23,8 @@
     <ProjectReference Include="..\ChessTournament.DAL\ChessTournament.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
 </Project>

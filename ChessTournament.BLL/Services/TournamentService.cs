@@ -23,6 +23,7 @@ namespace ChessTournament.BLL.Services
 
         public bool Create(TournamentAddDTO tournamentAddDTO)
         {
+
             Tournament t = tournamentAddDTO.FromBLLToDL();   
             t.Status = TournamentStatus.PendingPlayers;
             t.CurrentRound = 0;
@@ -30,6 +31,7 @@ namespace ChessTournament.BLL.Services
             t.Update = DateTime.Now;
             DateTime DeadLine = t.Created.AddDays(t.MinPlayer);
             if (t.RegisterationDeadLine < t.Created.AddDays(t.MinPlayer))
+
             {
                 throw new Exception($"La date de fin des inscriptions doit être supérieur au {t.Created.AddDays(t.MinPlayer)}");
             }
