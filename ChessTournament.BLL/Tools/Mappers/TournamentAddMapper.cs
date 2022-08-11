@@ -20,7 +20,7 @@ namespace ChessTournament.BLL.Tools.Mappers
                 Address = tournament.Address,
                 EloMin = tournament.EloMin,
                 EloMax = tournament.EloMax,
-                Categorie = tournament.Categorie,
+                Category = tournament.Category,
                 IsWomenOnly = tournament.IsWomenOnly,
                 RegisterationDeadLine = tournament.RegisterationDeadLine
             };
@@ -36,7 +36,7 @@ namespace ChessTournament.BLL.Tools.Mappers
                 Address = tournament.Address,
                 EloMin = tournament.EloMin,
                 EloMax = tournament.EloMax,
-                Categorie = tournament.Categorie,
+                Category = tournament.Category,
                 IsWomenOnly = tournament.IsWomenOnly,
                 RegisterationDeadLine = tournament.RegisterationDeadLine
             };

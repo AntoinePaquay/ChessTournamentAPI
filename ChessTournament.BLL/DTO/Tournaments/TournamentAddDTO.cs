@@ -28,7 +28,7 @@ namespace ChessTournament.BLL.DTO.Tournaments
         [GreaterOrEqualThanAttribute(nameof(EloMin))]
         public int? EloMax { get; set; }
         [Required]
-        public Categorie Categorie { get; set; }
+        public Category Category { get; set; }
         [Required]
         public bool IsWomenOnly { get; set; }
         public DateTime RegisterationDeadLine { get; set; }

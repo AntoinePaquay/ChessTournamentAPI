@@ -27,7 +27,7 @@ namespace ChessTournament.BLL.Services
             tournament.Status = TournamentStatus.PendingPlayers;
             tournament.CurrentRound = 0;
             tournament.Created = DateTime.Now;
-            tournament.Modified = DateTime.Now;
+            tournament.Update = DateTime.Now;
             DateTime DeadLine = tournament.Created.AddDays(tournament.MinPlayer);
             if (tournament.RegisterationDeadLine < tournament.Created.AddDays(tournament.MinPlayer))
             {
