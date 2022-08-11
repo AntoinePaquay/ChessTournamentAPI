@@ -14,11 +14,13 @@ namespace ChessTournament.BLL.Services
 {
     public class TournamentService : ITournamentService
     {
-        private ITournamentRepository _repository;
+        private ITournamentRepository _tournamentRepository;
+        private IMemberRepository _memberRepository;
 
-        public TournamentService(ITournamentRepository repository)
+        public TournamentService(ITournamentRepository repository, IMemberRepository memberRepository)
         {
-            _repository = repository;
+            _tournamentRepository = repository;
+            _memberRepository = memberRepository;
         }
 
         public bool Create(TournamentAddDTO tournamentAddDTO)
@@ -35,7 +37,7 @@ namespace ChessTournament.BLL.Services
             {
                 throw new Exception($"La date de fin des inscriptions doit être supérieur au {t.Created.AddDays(t.MinPlayer)}");
             }
-            return _repository.Create(t);
+            return _tournamentRepository.Create(t);
         }
 
         public bool Delete(Guid id)
@@ -45,7 +47,23 @@ namespace ChessTournament.BLL.Services
             {
                 throw new Exception("Vous ne pouvez pas supprimer un tournoi en cours");
             }
-            return _repository.Delete(id);
+            return _tournamentRepository.Delete(id);
+        }
+
+        public void SignUp(TournamentSignUpDTO dto)
+        {
+            Tournament t = _tournamentRepository.GetById(dto.TournamentId) ?? throw new ArgumentNullException("Tournament not found.");
+            Member m = _memberRepository.GetById(dto.PlayerId) ?? throw new ArgumentNullException("Player not found.");
+
+            if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("Tournament has already started.");
+            if (t.RegisterationDeadLine > DateTime.Now) throw new Exception("Sign up has closed.");
+            if (_tournamentRepository.IsPlayerSignedUp(dto.TournamentId, dto.PlayerId)) throw new Exception("Player has already signedup.");
+            if (_tournamentRepository.GetSignUpCount(dto.TournamentId) >= t.MaxPlayer) throw new Exception("Tournament is already full");
+
+            TimeSpan ageTS = t.RegisterationDeadLine - m.Birthday;
+            double age = ageTS.TotalDays / 365.2425;
+
+            if (t.Category == Category.Junior && age > 18) throw Exception("Player is not allowed in this category")
         }
     }
 }

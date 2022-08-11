@@ -9,6 +9,7 @@ namespace ChessTournament.DAL.Interfaces
 {
     public interface ITournamentRepository : IRepository<Guid, Tournament>
     {
-
+        bool IsPlayerSignedUp(Guid tournamentId, Guid MemberId);
+        int GetSignUpCount(Guid tournamentId);
     }
 }

@@ -50,8 +50,14 @@ namespace ChessTournament.DAL.Repositories
 
         public virtual bool Exists(Func<TEntity, bool> predicate)
         {
-            if (predicate == null) return false;
+            if (predicate == null) throw new ArgumentNullException("Predicate can't be null");
             return _context.Set<TEntity>().Any(predicate);
+        }
+
+        public virtual int Count(Func<TEntity, bool> predicate)
+        {
+            if (predicate == null) throw new ArgumentNullException("Predicate can't be null");
+            return _context.Set<TEntity>().Count(predicate);
         }
     }
 }
