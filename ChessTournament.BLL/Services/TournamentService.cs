@@ -23,21 +23,28 @@ namespace ChessTournament.BLL.Services
 
         public bool Create(TournamentAddDTO tournamentAddDTO)
         {
-            Tournament tournament = tournamentAddDTO.FromBLLToDL();
-            tournament.Status = TournamentStatus.PendingPlayers;
-            tournament.CurrentRound = 0;
-            tournament.Created = DateTime.Now;
-            tournament.Update = DateTime.Now;
-            DateTime DeadLine = tournament.Created.AddDays(tournament.MinPlayer);
-            if (tournament.RegisterationDeadLine < tournament.Created.AddDays(tournament.MinPlayer))
+
+            Tournament t = tournamentAddDTO.FromBLLToDL();   
+            t.Status = TournamentStatus.PendingPlayers;
+            t.CurrentRound = 0;
+            t.Created = DateTime.Now;
+            t.Update = DateTime.Now;
+            DateTime DeadLine = t.Created.AddDays(t.MinPlayer);
+            if (t.RegisterationDeadLine < t.Created.AddDays(t.MinPlayer))
+
             {
-                throw new Exception($"La date de fin des inscriptions doit être supérieur au {tournament.Created.AddDays(tournament.MinPlayer)}");
+                throw new Exception($"La date de fin des inscriptions doit être supérieur au {t.Created.AddDays(t.MinPlayer)}");
             }
-            return _repository.Create(tournamentAddDTO.FromBLLToDL());
+            return _repository.Create(t);
         }
 
         public bool Delete(Guid id)
         {
+            Tournament t = new Tournament();
+            if(t.Status == TournamentStatus.Ongoing)
+            {
+                throw new Exception("Vous ne pouvez pas supprimer un tournoi en cours");
+            }
             return _repository.Delete(id);
         }
     }
