@@ -22,11 +22,11 @@ namespace ChessTournament.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult Login(MemberLoginDTO dto)
-        {
-            _Service.Login(dto);
-            return Ok();
-        }
+        //[HttpPost]
+        //public IActionResult Login(MemberLoginDTO dto)
+        //{
+        //    _Service.Login(dto);
+        //    return Ok();
+        //}
     }
 }
