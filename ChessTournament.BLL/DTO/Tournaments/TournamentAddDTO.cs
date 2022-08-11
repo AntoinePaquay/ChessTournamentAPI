@@ -21,7 +21,13 @@ namespace ChessTournament.BLL.DTO.Tournaments
         [Range(2, 32)]
         [GreaterOrEqualThanAttribute(nameof(MinPlayer))]
         public int MaxPlayer { get; set; }
-        public Address? Address { get; set; }
+        public string? Country { get; set; }
+        public string? PostalCode { get; set; }
+        public string? Street { get; set; }
+        public string? HouseNumber { get; set; }
+        public string? City { get; set; }
+        public string? Province { get; set; }
+
         [Range(0, 3000)]
         public int? EloMin { get; set; }
         [Range(0, 3000)]
