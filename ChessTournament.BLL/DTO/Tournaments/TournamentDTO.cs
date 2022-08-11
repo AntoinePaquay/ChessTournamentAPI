@@ -1,0 +1,30 @@
+﻿using ChessTournament.DL.Entities;
+using ChessTournament.DL.Enumerations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ChessTournament.BLL.DTO.Tournaments
+{
+    public class TournamentDTO
+    {
+        public TournamentDTO(Tournament tournament)
+        {
+
+        }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public Address Address { get; set; } = null!;
+        public int PlayerCount { get; set; }
+        public int MinPlayer { get; set; }
+        public int MaxPlayer { get; set; }
+        public int? EloMin { get; set; }
+        public int? EloMax { get; set; }
+        public Category Category { get; set; }
+        public TournamentStatus Status { get; set; }
+        public int CurrentRound { get; set; }
+        public DateTime RegisterationDeadLine { get; set; }
+    }
+}
