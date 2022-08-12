@@ -42,5 +42,14 @@ namespace ChessTournament.DAL.Repositories
             _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Add(_context.Members.Find(memberId));
             _context.SaveChanges();
         }
+
+        public void WithdrawUser(Guid tournamentId, Guid memberId)
+        {
+            if (!_context.Tournaments.Any(t => t.Id == tournamentId)) throw new ArgumentException("Tournament doesn't exist");
+            if (!_context.Members.Any(m => m.Id == memberId)) throw new ArgumentException("Member doesn't exist");
+
+            _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Remove(_context.Members.Find(memberId));
+            _context.SaveChanges();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace ChessTournament.BLL.Services
             Member m = _MemberRepository.GetById(dto.PlayerId) ?? throw new ArgumentNullException("Player not found.");
 
             if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("Tournament has already started.");
-            if (t.RegisterationDeadLine > DateTime.Now) throw new Exception("Sign up has closed.");
+            if (t.RegisterationDeadLine < DateTime.Now) throw new Exception("Sign up has closed.");
             if (_TournamentRepository.IsPlayerSignedUp(dto.TournamentId, dto.PlayerId)) throw new Exception("Player has already signedup.");
             if (_TournamentRepository.GetSignUpCount(dto.TournamentId) >= t.MaxPlayer) throw new Exception("Tournament is already full");
 
@@ -50,7 +50,7 @@ namespace ChessTournament.BLL.Services
             if (!_TournamentRepository.IsPlayerSignedUp(dto.TournamentId, MemberId)) throw new ArgumentException("Player is not signed up");
             if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("The tournament is no longer accepting sign ups");
 
-            
+            _TournamentRepository.WithdrawUser(dto.TournamentId, MemberId);
         }
     }
 }
