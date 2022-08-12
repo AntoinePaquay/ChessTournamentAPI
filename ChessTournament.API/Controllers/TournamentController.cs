@@ -23,11 +23,12 @@ namespace ChessTournament.API.Controllers
             _service.Create(tournamentAddDTO);
             return Ok();
         }
-        
-        [HttpPost]
-        public IActionResult LastTenTournamentUpdated() 
-        { 
-            return Ok(); 
+
+        [HttpGet]
+        public IActionResult LastTenTournamentUpdated()
+        {
+            IEnumerable<TournamentDTO> tournamentDTOs = _service.LastTenTournamentUpdated();
+            return Ok(tournamentDTOs);
         }
 
     }
