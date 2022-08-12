@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DL.Enumerations
 {
+    [Flags]
     public enum Category
     {
         Junior = 1,

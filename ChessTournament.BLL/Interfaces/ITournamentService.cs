@@ -1,4 +1,5 @@
-﻿using ChessTournament.BLL.DTO.Tournaments;
+﻿using ChessTournament.BLL.DTO.SignUps;
+using ChessTournament.BLL.DTO.Tournaments;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
 using System;
@@ -14,6 +15,5 @@ namespace ChessTournament.BLL.Interfaces
     {
         bool Create(TournamentAddDTO tournamentAddDTO);
         bool Delete(Guid id);
-        void SignUp(TournamentSignUpDTO dto);
     }
 }

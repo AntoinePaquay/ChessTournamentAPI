@@ -11,5 +11,6 @@ namespace ChessTournament.DAL.Interfaces
     {
         bool IsPlayerSignedUp(Guid tournamentId, Guid MemberId);
         int GetSignUpCount(Guid tournamentId);
+        void SignUserUp(Guid tournamentId, Guid memberId);
     }
 }

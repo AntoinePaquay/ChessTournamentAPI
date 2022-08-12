@@ -1,5 +1,6 @@
 ﻿using ChessTournament.BLL.DTO.Tournaments;
 using ChessTournament.BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,10 +24,6 @@ namespace ChessTournament.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult TournamentSignUp(TournamentSignUpDTO dto)
-        {
-            _service.SignUp(dto);
-        }
+
     }
 }
