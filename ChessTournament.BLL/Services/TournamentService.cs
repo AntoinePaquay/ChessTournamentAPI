@@ -1,4 +1,5 @@
-﻿using ChessTournament.BLL.DTO.Tournaments;
+﻿using ChessTournament.BLL.DTO.SignUps;
+using ChessTournament.BLL.DTO.Tournaments;
 using ChessTournament.BLL.Interfaces;
 using ChessTournament.BLL.Tools.Mappers;
 using ChessTournament.DAL.Interfaces;
@@ -50,20 +51,5 @@ namespace ChessTournament.BLL.Services
             return _tournamentRepository.Delete(id);
         }
 
-        public void SignUp(TournamentSignUpDTO dto)
-        {
-            Tournament t = _tournamentRepository.GetById(dto.TournamentId) ?? throw new ArgumentNullException("Tournament not found.");
-            Member m = _memberRepository.GetById(dto.PlayerId) ?? throw new ArgumentNullException("Player not found.");
-
-            if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("Tournament has already started.");
-            if (t.RegisterationDeadLine > DateTime.Now) throw new Exception("Sign up has closed.");
-            if (_tournamentRepository.IsPlayerSignedUp(dto.TournamentId, dto.PlayerId)) throw new Exception("Player has already signedup.");
-            if (_tournamentRepository.GetSignUpCount(dto.TournamentId) >= t.MaxPlayer) throw new Exception("Tournament is already full");
-
-            TimeSpan ageTS = t.RegisterationDeadLine - m.Birthday;
-            double age = ageTS.TotalDays / 365.2425;
-
-            if (t.Category == Category.Junior && age > 18) throw Exception("Player is not allowed in this category")
-        }
     }
 }
