@@ -30,10 +30,5 @@ namespace ChessTournament.API.Controllers
             return Ok(); 
         }
 
-        [HttpPost]
-        public IActionResult TournamentSignUp(TournamentSignUpDTO dto)
-        {
-            _service.SignUp(dto);
-        }
     }
 }
