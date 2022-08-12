@@ -15,7 +15,8 @@ namespace ChessTournament.DAL.Repositories
 
         public IEnumerable<Tournament> LastTenTournamentUpdated()
         {
-            return _context.Set<Tournament>()
+            return _context.Tournaments
+                .Include(a => a.Address)
                 .Where(t => t.Status != TournamentStatus.Finished)
                 .OrderByDescending(t => t.Update)
                 .Take(10);
