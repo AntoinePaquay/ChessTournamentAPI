@@ -24,6 +24,12 @@ namespace ChessTournament.API.Controllers
         }
 
         [HttpPost]
+        public IActionResult LastTenTournamentUpdated() 
+        { 
+            return Ok(); 
+        }
+
+        [HttpPost]
         public IActionResult TournamentSignUp(TournamentSignUpDTO dto)
         {
             _service.SignUp(dto);

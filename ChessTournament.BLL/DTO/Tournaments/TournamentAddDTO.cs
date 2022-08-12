@@ -38,7 +38,5 @@ namespace ChessTournament.BLL.DTO.Tournaments
         [Required]
         public bool IsWomenOnly { get; set; }
         public DateTime RegisterationDeadLine { get; set; }
-
-
     }
 }
