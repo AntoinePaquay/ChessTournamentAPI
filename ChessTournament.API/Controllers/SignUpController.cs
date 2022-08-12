@@ -48,7 +48,7 @@ namespace ChessTournament.API.Controllers
             }
             catch (Exception e)
             {
-                BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
             
         }
