@@ -1,4 +1,5 @@
-﻿using ChessTournament.BLL.DTO.Tournaments;
+﻿using ChessTournament.BLL.DTO.SignUps;
+using ChessTournament.BLL.DTO.Tournaments;
 using ChessTournament.BLL.Interfaces;
 using ChessTournament.BLL.Tools.Mappers;
 using ChessTournament.DAL.Interfaces;

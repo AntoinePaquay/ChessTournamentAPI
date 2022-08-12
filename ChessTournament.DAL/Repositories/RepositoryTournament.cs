@@ -2,6 +2,9 @@
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
 using ChessTournament.DL.Enumerations;
+
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +29,7 @@ namespace ChessTournament.DAL.Repositories
         }
         public bool IsPlayerSignedUp(Guid tournamentId, Guid MemberId)
         {
-            Tournament t = _context.Tournaments.FirstOrDefault(t => t.Id == tournamentId);
+            Tournament? t = _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId);
             if (t is null) return false;
 
             return t.Members.Any<Member>(m => m.Id == MemberId);
@@ -34,10 +37,17 @@ namespace ChessTournament.DAL.Repositories
 
         public int GetSignUpCount(Guid tournamentId)
         {
-            Tournament t = _context.Tournaments.FirstOrDefault(t => t.Id == tournamentId);
-            if (t is null) return 0;
+            return _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Count() 
+                ?? throw new KeyNotFoundException();
+        }
 
-            return t.Members.Count();
+        public void SignUserUp(Guid tournamentId, Guid memberId)
+        {
+            if (!_context.Tournaments.Any(t => t.Id == tournamentId)) throw new ArgumentException("Tournament doesn't exist");
+            if (!_context.Members.Any(m => m.Id == memberId)) throw new ArgumentException("Member doesn't exist");
+
+            _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Add(_context.Members.Find(memberId));
+            _context.SaveChanges();
         }
     }
 }

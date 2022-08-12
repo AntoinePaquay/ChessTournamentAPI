@@ -60,6 +60,7 @@ builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 builder.Services.AddScoped<IAuthentificationService, AuthentificationService>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
 builder.Services.AddScoped<ITournamentRepository, RepositoryTournament>();
+builder.Services.AddScoped<ISignUpService, SignUpService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -74,6 +75,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience = true,
         ValidAudience = builder.Configuration.GetSection("jwt").GetSection("audience").Value
     };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Auth", policy => policy.RequireAuthenticatedUser());
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
 });
 
 var app = builder.Build();

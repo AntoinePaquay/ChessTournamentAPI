@@ -1,5 +1,6 @@
 ﻿using ChessTournament.BLL.DTO.Tournaments;
 using ChessTournament.BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace ChessTournament.API.Controllers
             _service.Create(tournamentAddDTO);
             return Ok();
         }
-
+        
         [HttpPost]
         public IActionResult LastTenTournamentUpdated() 
         { 
