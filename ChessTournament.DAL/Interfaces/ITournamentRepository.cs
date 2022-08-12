@@ -13,5 +13,6 @@ namespace ChessTournament.DAL.Interfaces
         int GetSignUpCount(Guid tournamentId);
         public IEnumerable<Tournament> LastTenTournamentUpdated();
         void SignUserUp(Guid tournamentId, Guid memberId);
+        void WithdrawUser(Guid tournamentId, Guid memberId);
     }
 }

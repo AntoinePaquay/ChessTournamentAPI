@@ -24,7 +24,7 @@ namespace ChessTournament.API.Controllers
             return Ok();
         }
         
-        [HttpPost]
+        [HttpGet]
         public IActionResult LastTenTournamentUpdated() 
         { 
             return Ok(); 

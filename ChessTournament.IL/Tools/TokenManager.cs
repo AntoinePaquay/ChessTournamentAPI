@@ -32,7 +32,7 @@ namespace ChessTournament.IL.Tools
             Claim[] claims = new[]
             {
                 new Claim(ClaimTypes.Surname, pseudo),
-                new Claim(ClaimTypes.NameIdentifier, id),
+                new Claim(ClaimTypes.Sid, id),
                 new Claim(ClaimTypes.Role, role)
             };
 
