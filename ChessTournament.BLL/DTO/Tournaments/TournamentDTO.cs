@@ -12,8 +12,20 @@ namespace ChessTournament.BLL.DTO.Tournaments
     {
         public TournamentDTO(Tournament tournament)
         {
-
+            Id = tournament.Id;
+            Name = tournament.Name;
+            Address = tournament.Address;
+            PlayerCount = tournament.Members.Count;
+            MinPlayer = tournament.MinPlayer;
+            MaxPlayer = tournament.MaxPlayer;
+            EloMin = tournament.EloMin;
+            EloMax = tournament.EloMax;
+            Category = tournament.Category;
+            Status = tournament.Status;
+            CurrentRound = tournament.CurrentRound;
+            RegisterationDeadLine = tournament.RegisterationDeadLine;
         }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public Address Address { get; set; } = null!;

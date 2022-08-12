@@ -13,6 +13,7 @@ namespace ChessTournament.BLL.Interfaces
     public interface ITournamentService 
 
     {
+        public IEnumerable<TournamentDTO> LastTenTournamentUpdated();
         bool Create(TournamentAddDTO tournamentAddDTO);
         bool Delete(Guid id);
     }
