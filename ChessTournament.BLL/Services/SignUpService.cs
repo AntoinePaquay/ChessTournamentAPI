@@ -21,14 +21,14 @@ namespace ChessTournament.BLL.Services
             _MemberRepository = memberRepository;
             _TournamentRepository = tournamentRepository;
         }
-        public void SignUp(SignUpDTO dto)
+        public void SignUp(SignUpDTO dto, Guid memberId)
         {
             Tournament t = _TournamentRepository.GetById(dto.TournamentId) ?? throw new ArgumentNullException("Tournament not found.");
-            Member m = _MemberRepository.GetById(dto.PlayerId) ?? throw new ArgumentNullException("Player not found.");
+            Member m = _MemberRepository.GetById(memberId) ?? throw new ArgumentNullException("Player not found.");
 
             if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("Tournament has already started.");
             if (t.RegisterationDeadLine < DateTime.Now) throw new Exception("Sign up has closed.");
-            if (_TournamentRepository.IsPlayerSignedUp(dto.TournamentId, dto.PlayerId)) throw new Exception("Player has already signedup.");
+            if (_TournamentRepository.IsPlayerSignedUp(dto.TournamentId,memberId)) throw new Exception("Player has already signedup.");
             if (_TournamentRepository.GetSignUpCount(dto.TournamentId) >= t.MaxPlayer) throw new Exception("Tournament is already full");
 
             TimeSpan ageTS = t.RegisterationDeadLine - m.Birthday;
@@ -44,13 +44,13 @@ namespace ChessTournament.BLL.Services
             _TournamentRepository.SignUserUp(t.Id, m.Id);
         }
 
-        public void Withdraw(WithdrawDTO dto, Guid MemberId)
+        public void Withdraw(WithdrawDTO dto, Guid memberId)
         {
             Tournament t = _TournamentRepository.GetById(dto.TournamentId) ?? throw new ArgumentException("No tournament matches the provided Id");
-            if (!_TournamentRepository.IsPlayerSignedUp(dto.TournamentId, MemberId)) throw new ArgumentException("Player is not signed up");
+            if (!_TournamentRepository.IsPlayerSignedUp(dto.TournamentId, memberId)) throw new ArgumentException("Player is not signed up");
             if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("The tournament is no longer accepting sign ups");
 
-            _TournamentRepository.WithdrawUser(dto.TournamentId, MemberId);
+            _TournamentRepository.WithdrawUser(dto.TournamentId, memberId);
         }
     }
 }

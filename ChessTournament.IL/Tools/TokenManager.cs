@@ -1,7 +1,9 @@
 ﻿using ChessTournament.DL.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
+using System.Web;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -48,5 +50,12 @@ namespace ChessTournament.IL.Tools
 
             return handler.WriteToken(token);
         }
+
+        /*public Guid GetUserIdFromToken()
+        {
+            How to implement this?
+
+            return Guid.NewGuid();
+        }*/
     }
 }

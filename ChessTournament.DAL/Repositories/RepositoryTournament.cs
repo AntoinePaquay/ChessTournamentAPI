@@ -22,7 +22,7 @@ namespace ChessTournament.DAL.Repositories
         }
         public bool IsPlayerSignedUp(Guid tournamentId, Guid MemberId)
         {
-            Tournament? t = _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId);
+            Tournament? t = GetWithMembers(tournamentId);
             if (t is null) return false;
 
             return t.Members.Any<Member>(m => m.Id == MemberId);
@@ -30,7 +30,7 @@ namespace ChessTournament.DAL.Repositories
 
         public int GetSignUpCount(Guid tournamentId)
         {
-            return _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Count() 
+            return GetWithMembers(tournamentId)?.Members.Count 
                 ?? throw new KeyNotFoundException();
         }
 
@@ -51,5 +51,33 @@ namespace ChessTournament.DAL.Repositories
             _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId)?.Members.Remove(_context.Members.Find(memberId));
             _context.SaveChanges();
         }
+        /// <summary>
+        /// Get a tournament entity containing a list of registered members.
+        /// </summary>
+        /// <param name="tournamentId"></param>
+        /// <returns>Tournament entity joined with MemberTournament or null.</returns>
+        public Tournament? GetWithMembers(Guid tournamentId)
+        {
+            return _context.Tournaments.Include(t => t.Members).FirstOrDefault(t => t.Id == tournamentId);
+        }
+
+        public ICollection<Member> GetRegisteredPlayers(Guid tournamentId)
+        {
+            Tournament t = GetWithMembers(tournamentId) ?? throw new Exception("Tournament not found");
+            return t.Members ?? new List<Member>();
+        }
+
+        public void InsertMatchups(Tournament t, IEnumerable<Matchup> matchups)
+        {
+            foreach (var item in matchups)
+            {
+                _context.Matchups.Add(item);
+            }
+
+            _context.SaveChanges();
+            
+
+        }
+
     }
 }

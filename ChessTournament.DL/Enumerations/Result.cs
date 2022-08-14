@@ -25,6 +25,7 @@ namespace ChessTournament.DL.Enumerations
     {
         Black,
         White,
-        Draw
+        Draw,
+        PendingResult
     }
 }

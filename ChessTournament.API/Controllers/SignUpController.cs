@@ -22,15 +22,7 @@ namespace ChessTournament.API.Controllers
         [Authorize("Auth")]
         public IActionResult TournamentSignUp(SignUpDTO dto)
         {
-            _Service.SignUp(dto);
-            return Ok();
-        }
-
-        [HttpDelete]
-        [Authorize("Auth")]
-        public IActionResult Withdraw(WithdrawDTO dto)
-        { 
-            string memberId = User.FindFirst(ClaimTypes.Sid).Value ?? throw new ArgumentNullException("Couldn't retrieve user id from jwt token.");
+            string memberId = User.FindFirst(ClaimTypes.Sid)?.Value ?? throw new ArgumentNullException("Couldn't retrieve user id from jwt token.");
             Guid id;
             try
             {
@@ -38,7 +30,26 @@ namespace ChessTournament.API.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return Unauthorized();
+            }
+
+            _Service.SignUp(dto, id);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Authorize("Auth")]
+        public IActionResult Withdraw(WithdrawDTO dto)
+        { 
+            string memberId = User.FindFirst(ClaimTypes.Sid)?.Value ?? throw new ArgumentNullException("Couldn't retrieve user id from jwt token.");
+            Guid id;
+            try
+            {
+                id = new Guid(memberId);
+            }
+            catch (Exception)
+            {
+                return Unauthorized();
             }
 
             try
@@ -50,7 +61,6 @@ namespace ChessTournament.API.Controllers
             {
                 return BadRequest(e.Message);
             }
-            
         }
     }
 }
