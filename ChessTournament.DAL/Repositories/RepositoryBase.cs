@@ -25,17 +25,21 @@ namespace ChessTournament.DAL.Repositories
             return _context.SaveChanges() == 1;
         }
 
-        public virtual bool Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
-            _context.Update(entity);
-            return _context.SaveChanges() == 1;
+            _context.Set<TEntity>().Update(entity);
+            if (_context.SaveChanges() == 0) throw new Exception($"Couldn't update {nameof(entity)}");
         }
 
         public virtual IEnumerable<TEntity> GetAll()
         {
             return _context.Set<TEntity>();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The entity if found. Otherwise null</returns>
         public virtual TEntity? GetById(TKey id)
         {
             return _context.Set<TEntity>().Find(id);
@@ -59,5 +63,15 @@ namespace ChessTournament.DAL.Repositories
             if (predicate == null) throw new ArgumentNullException("Predicate can't be null");
             return _context.Set<TEntity>().Count(predicate);
         }
+
+        /// <summary>
+        /// Calls BbContext method SaveChanges()
+        /// </summary>
+        /// <returns>The number of state entries written to the db.</returns>
+        public virtual int SaveChanges()
+        {
+            return _context.SaveChanges();
+        }
+
     }
 }

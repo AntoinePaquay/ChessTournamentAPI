@@ -13,7 +13,16 @@ namespace ChessTournament.DAL.Repositories
     {
         public RepositoryMatchUp(ChessTournamentContext context) : base(context)
         {
+        }
+        public void Add(IEnumerable<Matchup> matches)
+        {
+            foreach (var item in matches)
+            {
+                this.Create(item);
+            }
 
+            if (_context.SaveChanges() == 0) throw new Exception($"Couldn't add the {matches.Count()} matchups");
+            
         }
     }
 }

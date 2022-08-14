@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessTournament.BLL.DTO.SignUps
+namespace ChessTournament.BLL.DTO.Tournaments
 {
-    public class SignUpDTO
+    public class TournamentStartDTO
     {
-        public Guid TournamentId { get; set; }
+        public Guid tournamentId { get; set; }
     }
 }

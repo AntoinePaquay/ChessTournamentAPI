@@ -30,5 +30,21 @@ namespace ChessTournament.API.Controllers
             return Ok(); 
         }
 
+        [HttpPatch]
+        [Authorize("Auth")]
+        public IActionResult StartTournament(TournamentStartDTO dto)
+        {
+            try
+            {
+                _service.StartTournament(dto);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+            
+        }
+
     }
 }

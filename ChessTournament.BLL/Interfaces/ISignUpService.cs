@@ -9,7 +9,7 @@ namespace ChessTournament.BLL.Interfaces
 {
     public interface ISignUpService
     {
-        void SignUp(SignUpDTO dto);
-        void Withdraw(WithdrawDTO dto, Guid MemberId);
+        void SignUp(SignUpDTO dto, Guid memberId);
+        void Withdraw(WithdrawDTO dto, Guid memberId);
     }
 }

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\ChessTournament.DL\ChessTournament.DL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Wrappers\" />
+  </ItemGroup>
+
 </Project>

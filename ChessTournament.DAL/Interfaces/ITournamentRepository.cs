@@ -14,5 +14,8 @@ namespace ChessTournament.DAL.Interfaces
         public IEnumerable<Tournament> LastTenTournamentUpdated();
         void SignUserUp(Guid tournamentId, Guid memberId);
         void WithdrawUser(Guid tournamentId, Guid memberId);
+        ICollection<Member> GetRegisteredPlayers(Guid tournamentId);
+        Tournament? GetWithMembers(Guid tournamentId);
+        void InsertMatchups(Tournament t, IEnumerable<Matchup> matchups);
     }
 }
