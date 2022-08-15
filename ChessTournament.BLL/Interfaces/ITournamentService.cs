@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace ChessTournament.BLL.Interfaces
 {
     public interface ITournamentService 
-
     {
         public IEnumerable<TournamentDTO> LastTenTournamentUpdated();
         bool Create(TournamentAddDTO tournamentAddDTO);
         bool Delete(Guid id);
         void StartTournament(TournamentIdDTO dto);
+        void AdvanceRound(TournamentIdDTO dto);
     }
 }

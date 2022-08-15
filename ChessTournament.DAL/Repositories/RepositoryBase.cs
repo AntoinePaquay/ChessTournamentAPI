@@ -1,6 +1,7 @@
 ﻿using ChessTournament.DAL.Context;
 using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

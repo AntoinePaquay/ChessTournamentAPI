@@ -60,7 +60,7 @@ builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 builder.Services.AddScoped<IAuthentificationService, AuthentificationService>();
 
 builder.Services.AddScoped<ITournamentService, TournamentService>();
-builder.Services.AddScoped<ITournamentRepository, RepositoryTournament>();
+builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 
 builder.Services.AddScoped<IMatchupRepository, MatchupRepository>();
 builder.Services.AddScoped<IMatchupService, MatchupService>();

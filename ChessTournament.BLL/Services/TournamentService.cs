@@ -79,6 +79,19 @@ namespace ChessTournament.BLL.Services
                 throw;
             }
         }
+
+        public void AdvanceRound(TournamentIdDTO dto)
+        {
+            Tournament t = _tournamentRepository.GetWithMatchups(dto.tournamentId) ?? throw new ArgumentException("Tournament doesn't exist");
+            if (t.Matchups.Any(m => m.Result == Result.PendingResult && m.Round == t.CurrentRound)) throw new Exception("Some results are missing");
+
+            t.CurrentRound++;
+            _tournamentRepository.SaveChanges();
+        }
+
+
+
+        #region Private methods
         /// <summary>
         /// Generates the matchups for a given tournament. Each player plays against everyone 2 times, as black and white.
         /// </summary>
@@ -140,7 +153,7 @@ namespace ChessTournament.BLL.Services
 
             return matchups;
         }
-
+        #endregion
 
     }
 }

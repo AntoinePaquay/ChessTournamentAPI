@@ -17,5 +17,6 @@ namespace ChessTournament.DAL.Interfaces
         ICollection<Member> GetRegisteredPlayers(Guid tournamentId);
         Tournament? GetWithMembers(Guid tournamentId);
         void InsertMatchups(Tournament t, IEnumerable<Matchup> matchups);
+        Tournament? GetWithMatchups(Guid tournamentId);
     }
 }

@@ -52,11 +52,12 @@ namespace ChessTournament.API.Controllers
             try
             {
                 _service.AdvanceRound(dto);
+                return Ok();
             }
             catch (Exception)
             {
 
-                throw;
+                return BadRequest();
             }
         }
     }
