@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.DAL.Interfaces
 {
-    public interface IMatchupRepository 
+    public interface IMatchupRepository : IRepository<Guid, Matchup>
     {
-        void Add(IEnumerable<Matchup> matches);
+        Matchup? GetWithTournament(Guid id);
     }
 }

@@ -30,9 +30,9 @@ namespace ChessTournament.API.Controllers
             return Ok(); 
         }
 
-        [HttpPatch]
-        [Authorize("Auth")]
-        public IActionResult StartTournament(TournamentStartDTO dto)
+        [HttpPatch("Start")]
+        [Authorize("Admin")]
+        public IActionResult StartTournament(TournamentIdDTO dto)
         {
             try
             {
@@ -43,8 +43,21 @@ namespace ChessTournament.API.Controllers
             {
                 return BadRequest();
             }
-            
         }
 
+        [HttpPatch]
+        [Authorize("Admin")]
+        public IActionResult AdvanceRound(TournamentIdDTO dto)
+        {
+            try
+            {
+                _service.AdvanceRound(dto);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

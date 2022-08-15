@@ -16,6 +16,6 @@ namespace ChessTournament.BLL.Interfaces
         public IEnumerable<TournamentDTO> LastTenTournamentUpdated();
         bool Create(TournamentAddDTO tournamentAddDTO);
         bool Delete(Guid id);
-        void StartTournament(TournamentStartDTO dto);
+        void StartTournament(TournamentIdDTO dto);
     }
 }

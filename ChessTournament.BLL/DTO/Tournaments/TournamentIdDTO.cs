@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTournament.BLL.DTO.Tournaments
 {
-    public class TournamentStartDTO
+    public class TournamentIdDTO
     {
         public Guid tournamentId { get; set; }
     }
