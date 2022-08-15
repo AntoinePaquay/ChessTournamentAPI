@@ -17,13 +17,11 @@ namespace ChessTournament.BLL.Services
 {
     public class TournamentService : ITournamentService
     {
-        private ITournamentRepository _tournamentRepository;
-
+        private readonly ITournamentRepository _tournamentRepository;
         public TournamentService(ITournamentRepository repository)
         {
             _tournamentRepository = repository;
         }
-
         public bool Create(TournamentAddDTO tournamentAddDTO)
         {
             Tournament t = tournamentAddDTO.FromBLLToDL();
@@ -39,7 +37,6 @@ namespace ChessTournament.BLL.Services
             }
             return _tournamentRepository.Create(t);
         }
-
         public bool Delete(Guid id)
         {
             Tournament t = new Tournament();
@@ -49,15 +46,13 @@ namespace ChessTournament.BLL.Services
             }
             return _tournamentRepository.Delete(id);
         }
-
         public IEnumerable<TournamentDTO> LastTenTournamentUpdated()
         {
             return _tournamentRepository
                 .LastTenTournamentUpdated()
                 .Select(t => new TournamentDTO(t));
         }
-
-        public void StartTournament(TournamentStartDTO dto)
+        public void StartTournament(TournamentIdDTO dto)
         {
             Tournament t = _tournamentRepository.GetWithMembers(dto.tournamentId) ?? throw new ArgumentException("Tournament not found.");
             if (t.Status != TournamentStatus.PendingPlayers) throw new Exception("Tournament is already started or finished.");
@@ -84,7 +79,6 @@ namespace ChessTournament.BLL.Services
                 throw;
             }
         }
-
         /// <summary>
         /// Generates the matchups for a given tournament. Each player plays against everyone 2 times, as black and white.
         /// </summary>
@@ -97,7 +91,6 @@ namespace ChessTournament.BLL.Services
             //Required because DbContext is tracking the other list
             List<Member> players = Members.ToList();
             
-
             players.Shuffle();
 
             //Adding a new member to represent BYE if player count is odd. Default Guid will be "00000000-0000-0000-0000-000000000000".
@@ -147,5 +140,7 @@ namespace ChessTournament.BLL.Services
 
             return matchups;
         }
+
+
     }
 }
