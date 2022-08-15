@@ -3,12 +3,13 @@ using ChessTournament.DAL.Interfaces;
 using ChessTournament.DL.Entities;
 using ChessTournament.DL.Enumerations;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ChessTournament.DAL.Repositories
 {
-    public class RepositoryTournament : RepositoryBase<Guid, Tournament>, ITournamentRepository
+    public class TournamentRepository : RepositoryBase<Guid, Tournament>, ITournamentRepository
     {
-        public RepositoryTournament(ChessTournamentContext context) : base(context)
+        public TournamentRepository(ChessTournamentContext context) : base(context)
         {
 
         }
@@ -75,9 +76,11 @@ namespace ChessTournament.DAL.Repositories
             }
 
             _context.SaveChanges();
-            
-
         }
 
+        public Tournament? GetWithMatchups(Guid tournamentId)
+        {
+            return _context.Tournaments.Include(t => t.Matchups).FirstOrDefault(t => t.Id == tournamentId);
+        }
     }
 }
