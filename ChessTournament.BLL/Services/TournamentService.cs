@@ -113,6 +113,12 @@ namespace ChessTournament.BLL.Services
             return scores;
         }
 
+        public TournamentDTO Get(Guid id)
+        {
+            Tournament t = _tournamentRepository.GetById(id) ?? throw new Exception("Tournament not found");
+            return new TournamentDTO(t);
+        }
+
 
         #region Private methods
         /// <summary>

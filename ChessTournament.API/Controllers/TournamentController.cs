@@ -30,6 +30,31 @@ namespace ChessTournament.API.Controllers
             return Ok(); 
         }
 
+        [HttpGet("{Id}")]
+        public IActionResult GetTournament(string id)
+        {
+            Guid guid;
+            try
+            {
+                guid = new Guid(id);
+                if (guid == Guid.Empty) return BadRequest();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                TournamentDTO t = _service.Get(guid);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpPatch("Start")]
         [Authorize("Admin")]
         public IActionResult StartTournament(TournamentIdDTO dto)

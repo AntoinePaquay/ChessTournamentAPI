@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Isopoh.Cryptography.Argon2" Version="1.1.12" />
+    <PackageReference Include="MailKit" Version="3.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.8" />
+    <PackageReference Include="MimeKit" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
