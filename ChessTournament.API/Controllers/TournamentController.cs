@@ -60,5 +60,29 @@ namespace ChessTournament.API.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("score/{id}/round/{round}")]
+        public IActionResult GetRoundScores(string id, int round)
+        {
+            Guid guid;
+            try
+            {
+                guid = new Guid(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                IEnumerable<PlayerRoundScoreDTO> scores =  _service.GetRoundScores(guid, round);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
