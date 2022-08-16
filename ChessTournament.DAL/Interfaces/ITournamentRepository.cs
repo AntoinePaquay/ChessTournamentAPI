@@ -18,5 +18,6 @@ namespace ChessTournament.DAL.Interfaces
         Tournament? GetWithMembers(Guid tournamentId);
         void InsertMatchups(Tournament t, IEnumerable<Matchup> matchups);
         Tournament? GetWithMatchups(Guid tournamentId);
+        Tournament? GetWithPlayedRound(Guid tournamentId, int RoundNumber);
     }
 }

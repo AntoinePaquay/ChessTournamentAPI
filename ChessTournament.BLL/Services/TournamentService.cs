@@ -90,6 +90,29 @@ namespace ChessTournament.BLL.Services
         }
 
 
+        public IEnumerable<PlayerRoundScoreDTO> GetRoundScores(Guid id, int round)
+        {
+            Tournament t = _tournamentRepository.GetWithPlayedRound(id, round) ?? throw new Exception("Tournament not found");
+            List<PlayerRoundScoreDTO> scores = new();
+
+            foreach (var member in t.Members)
+            {
+                PlayerRoundScoreDTO dto = new();
+                dto.Username = member.Pseudo;
+                if (round > 0)
+                {
+                    IEnumerable<Matchup> userMatches = t.Matchups.Where(m => m.Black.Id == id || m.White.Id == id);
+                    dto.DrawCount = userMatches.Count(m => m.Result == Result.Draw);
+                    dto.MatchCount = userMatches.Count(m => m.Result != Result.PendingResult);
+                    dto.VictoryCount = userMatches.Count(m => m.Black.Id == id && m.Result == Result.Black || m.White.Id == id && m.Result == Result.White);
+                    dto.LossCount = userMatches.Count(m => m.Black.Id == id && m.Result == Result.White || m.White.Id == id && m.Result == Result.Black);
+                    dto.Score = (double)dto.DrawCount / 2d + dto.VictoryCount;
+                }
+                scores.Add(dto);
+            }
+            return scores;
+        }
+
 
         #region Private methods
         /// <summary>
@@ -153,6 +176,7 @@ namespace ChessTournament.BLL.Services
 
             return matchups;
         }
+
         #endregion
 
     }

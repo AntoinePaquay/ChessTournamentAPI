@@ -12,6 +12,7 @@ namespace ChessTournament.DAL.Repositories
 {
     public class RepositoryBase<TKey, TEntity> : IRepository<TKey, TEntity>
         where TEntity : class, IEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         protected ChessTournamentContext _context;
 
@@ -45,6 +46,17 @@ namespace ChessTournament.DAL.Repositories
         {
             return _context.Set<TEntity>().Find(id);
         }
+
+        /// <summary>
+        /// Find an entity while invoking AsNoTracking() method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The entity if found. Otherwise null</returns>
+        public virtual TEntity? GetByIdNoTracking(TKey id) 
+        { 
+            return _context.Set<TEntity>().AsNoTracking().FirstOrDefault(e => e.Id.Equals(id)) ;
+        }
+
         public virtual bool Delete(TKey id)
         {
             TEntity ?entity = GetById(id);

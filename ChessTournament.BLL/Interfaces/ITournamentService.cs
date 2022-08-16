@@ -17,5 +17,6 @@ namespace ChessTournament.BLL.Interfaces
         bool Delete(Guid id);
         void StartTournament(TournamentIdDTO dto);
         void AdvanceRound(TournamentIdDTO dto);
+         IEnumerable<PlayerRoundScoreDTO> GetRoundScores(Guid id, int round);
     }
 }

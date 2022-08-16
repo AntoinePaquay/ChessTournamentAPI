@@ -82,5 +82,16 @@ namespace ChessTournament.DAL.Repositories
         {
             return _context.Tournaments.Include(t => t.Matchups).FirstOrDefault(t => t.Id == tournamentId);
         }
+
+        public Tournament? GetWithPlayedRound(Guid tournamentId, int RoundNumber)
+        {
+            return _context.Tournaments.AsNoTracking()
+                .Include(t => t.Matchups.Where(m => m.Round <= RoundNumber).Select(m => m.White))
+                .Include(t => t.Members)
+                .FirstOrDefault(t => t.Id.Equals(tournamentId));
+
+
+
+        }
     }
 }

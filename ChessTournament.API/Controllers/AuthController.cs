@@ -12,11 +12,11 @@ namespace ChessTournament.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthentificationController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private IAuthentificationService _Service;
         private TokenManager _TokenManager;
-        public AuthentificationController(IAuthentificationService service, TokenManager tokenManager)
+        public AuthController(IAuthentificationService service, TokenManager tokenManager)
         {
             _Service = service;
             _TokenManager = tokenManager;
