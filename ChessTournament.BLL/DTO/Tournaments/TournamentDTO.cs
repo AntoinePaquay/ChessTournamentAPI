@@ -14,7 +14,7 @@ namespace ChessTournament.BLL.DTO.Tournaments
         {
             Id = tournament.Id;
             Name = tournament.Name;
-            Address = tournament.Address;
+            Address = tournament.Address ?? null;
             PlayerCount = tournament.Members.Count;
             MinPlayer = tournament.MinPlayer;
             MaxPlayer = tournament.MaxPlayer;
@@ -28,7 +28,7 @@ namespace ChessTournament.BLL.DTO.Tournaments
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Address Address { get; set; } = null!;
+        public Address? Address { get; set; } = null!;
         public int PlayerCount { get; set; }
         public int MinPlayer { get; set; }
         public int MaxPlayer { get; set; }
