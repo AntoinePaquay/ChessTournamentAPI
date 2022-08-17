@@ -11,7 +11,7 @@ namespace ChessTournament.IL.Tools
 {
     public class MailManager
     {
-        public void SendEmail(string recipientMailAddress, string recipientName,string content, string subject)
+        public void SendEmail(string recipientMailAddress, string recipientName, string content, string subject)
         {
             string sender = "net2022@khunly.be";
             string password = "test1234=";

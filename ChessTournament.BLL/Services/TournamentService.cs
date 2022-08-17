@@ -82,7 +82,8 @@ namespace ChessTournament.BLL.Services
 
         public void AdvanceRound(TournamentIdDTO dto)
         {
-            Tournament t = _tournamentRepository.GetWithMatchups(dto.tournamentId) ?? throw new ArgumentException("Tournament doesn't exist");
+            //Tournament t = _tournamentRepository.GetWithMatchups(dto.tournamentId) ?? throw new ArgumentException("Tournament doesn't exist");
+            Tournament t = _tournamentRepository.GetWith(dto.tournamentId, t => t.Matchups) ?? throw new ArgumentException("Tournament doesn't exist");
             if (t.Matchups.Any(m => m.Result == Result.PendingResult && m.Round == t.CurrentRound)) throw new Exception("Some results are missing");
 
             t.CurrentRound++;
