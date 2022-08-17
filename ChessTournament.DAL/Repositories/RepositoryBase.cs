@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,6 +77,11 @@ namespace ChessTournament.DAL.Repositories
         {
             if (predicate == null) throw new ArgumentNullException("Predicate can't be null");
             return _context.Set<TEntity>().Count(predicate);
+        }
+
+        public virtual TEntity? GetWith<TProperty>(TKey key, Expression<Func<TEntity, TProperty>> navigationPropertyPath)
+        {
+            return _context.Set<TEntity>().Include(navigationPropertyPath).FirstOrDefault(e => e.Id.Equals(key));
         }
 
         /// <summary>

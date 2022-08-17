@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Templates\Email template\BaseEmailTemplate.cshtml.cs" />
+    <Content Include="Templates\Email template\BaseEmailTemplate.html" />
+    <Content Include="Templates\Email template\NewTournamentInvitationEmailTemplate.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="3.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
@@ -26,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

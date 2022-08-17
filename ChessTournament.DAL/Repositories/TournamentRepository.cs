@@ -85,12 +85,15 @@ namespace ChessTournament.DAL.Repositories
 
         public Tournament? GetWithPlayedRound(Guid tournamentId, int RoundNumber)
         {
-            return _context.Tournaments.AsNoTracking()
-                .Include(t => t.Matchups.Where(m => m.Round <= RoundNumber).Select(m => m.White))
-                .Include(t => t.Members)
+            //return _context.Tournaments.AsNoTracking()
+            //    .Include(t => t.Matchups.Where(m => m.Round <= RoundNumber).Select(m => m.White))
+            //    .Include(t => t.Members)
+            //    .FirstOrDefault(t => t.Id.Equals(tournamentId));
+
+            return _context.Tournaments.Include(t => t.Members)
+                .Include(t => t.Matchups).ThenInclude(m => m.White)
+                .Include(t => t.Matchups).ThenInclude(m => m.Black)
                 .FirstOrDefault(t => t.Id.Equals(tournamentId));
-
-
 
         }
     }
